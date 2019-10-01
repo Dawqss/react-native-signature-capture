@@ -59,10 +59,6 @@ public class RSSignatureCaptureMainView extends LinearLayout implements OnClickL
         ViewGroup.LayoutParams.MATCH_PARENT));
   }
 
-  public RSSignatureCaptureView getSignatureView() {
-    return signatureView;
-  }
-
   public void setSaveFileInExtStorage(Boolean saveFileInExtStorage) {
     this.saveFileInExtStorage = saveFileInExtStorage;
   }
@@ -182,7 +178,7 @@ public class RSSignatureCaptureMainView extends LinearLayout implements OnClickL
       event.putString("pathName", file.getAbsolutePath());
       event.putString("encoded", encoded);
       ReactContext reactContext = (ReactContext) getContext();
-      reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "topChange", event);
+      reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "saveSignature", event);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -216,7 +212,7 @@ public class RSSignatureCaptureMainView extends LinearLayout implements OnClickL
     WritableMap event = Arguments.createMap();
     event.putBoolean("dragged", true);
     ReactContext reactContext = (ReactContext) getContext();
-    reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "topChange", event);
+    reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "drag", event);
 
   }
 }
